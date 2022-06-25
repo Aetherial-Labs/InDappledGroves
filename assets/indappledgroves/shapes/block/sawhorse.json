@@ -1,0 +1,113 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"support": "block/wood/debarked/support",
+		"crossbrace": "block/wood/debarked/crossbrace"
+	},
+	"elements": [
+		{
+			"name": "Cube1",
+			"from": [ 8.0, 0.0, 8.0 ], 
+			"to": [ 8.0, 0.0, 8.0 ], 
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
+				"east": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
+				"south": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
+				"west": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
+				"up": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
+				"down": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
+			},
+			"children": [
+				{
+					"name": "South1",
+					"from": [ 4.96, -0.64, 5.6 ], 
+					"to": [ 6.56, 12.16, 6.4 ], 
+					"rotationOrigin": [ 4.96, -0.64, 5.6 ],
+					"rotationZ": 22.5,
+					"faces": {
+						"north": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 12.8 ] },
+						"east": { "texture": "#support", "uv": [ 0.0, 0.0, 0.8, 12.8 ] },
+						"south": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 12.8 ] },
+						"west": { "texture": "#support", "uv": [ 0.0, 0.0, 0.8, 12.8 ] },
+						"up": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 0.8 ] },
+						"down": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 0.8 ] }
+					},
+					"children": [
+						{
+							"name": "South3",
+							"from": [ -10.7343, 3.8701, 0.0 ], 
+							"to": [ -9.1343, 16.6701, 0.8 ], 
+							"rotationOrigin": [ -9.1343, 3.8701, 0.8 ],
+							"rotationX": -2.2304425730005845E-6,
+							"rotationY": -1.5851262817807334E-7,
+							"rotationZ": -45.5,
+							"faces": {
+								"south": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 12.8 ] },
+								"west": { "texture": "#support", "uv": [ 0.0, 0.0, 0.8, 12.8 ] },
+								"north": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 12.8 ] },
+								"east": { "texture": "#support", "uv": [ 0.0, 0.0, 0.8, 12.8 ] },
+								"up": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 0.8 ] },
+								"down": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 0.8 ] }
+							}
+						}
+					]
+				},
+				{
+					"name": "South4",
+					"from": [ 4.96, -0.64, -6.4 ], 
+					"to": [ 6.56, 12.16, -5.6 ], 
+					"rotationOrigin": [ 4.96, -0.64, -6.4 ],
+					"rotationZ": 22.5,
+					"faces": {
+						"north": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 12.8 ] },
+						"east": { "texture": "#support", "uv": [ 0.0, 0.0, 0.8, 12.8 ] },
+						"south": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 12.8 ] },
+						"west": { "texture": "#support", "uv": [ 0.0, 0.0, 0.8, 12.8 ] },
+						"up": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 0.8 ] },
+						"down": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 0.8 ] }
+					},
+					"children": [
+						{
+							"name": "South5",
+							"from": [ -10.7343, 3.8701, 0.0 ], 
+							"to": [ -9.1343, 16.6701, 0.8 ], 
+							"rotationOrigin": [ -9.1343, 3.8701, 0.8 ],
+							"rotationX": -2.2304425730005845E-6,
+							"rotationY": -1.5851262817807334E-7,
+							"rotationZ": -45.5,
+							"faces": {
+								"north": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 12.8 ] },
+								"east": { "texture": "#support", "uv": [ 0.0, 0.0, 0.8, 12.8 ] },
+								"south": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 12.8 ] },
+								"west": { "texture": "#support", "uv": [ 0.0, 0.0, 0.8, 12.8 ] },
+								"up": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 0.8 ] },
+								"down": { "texture": "#support", "uv": [ 0.0, 0.0, 1.6, 0.8 ] }
+							}
+						}
+					]
+				},
+				{
+					"name": "Cube6",
+					"from": [ -1.92, 11.2, -6.72 ], 
+					"to": [ 2.08, 12.0, 6.88 ], 
+					"rotationOrigin": [ -1.92, 11.2, -6.72 ],
+					"faces": {
+						"north": { "texture": "#crossbrace", "uv": [ 0.0, 0.0, 4.0, 0.8 ] },
+						"east": { "texture": "#crossbrace", "uv": [ 0.0, 0.0, 4.0, 12.8 ], "rotation": 90, "autoUv": false },
+						"south": { "texture": "#crossbrace", "uv": [ 0.0, 0.0, 4.0, 0.8 ], "autoUv": false },
+						"west": { "texture": "#crossbrace", "uv": [ 0.0, 0.0, 4.0, 12.8 ], "rotation": 270, "autoUv": false },
+						"up": { "texture": "#crossbrace", "uv": [ 0.0, 0.0, 4.0, 12.8 ], "autoUv": false },
+						"down": { "texture": "#crossbrace", "uv": [ 0.0, 0.0, 4.0, 12.8 ], "autoUv": false }
+					}
+				}
+			]
+		}
+	]}

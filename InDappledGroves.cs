@@ -23,10 +23,12 @@ namespace InDappledGroves
             //Register Blocks
             api.RegisterBlockClass("idgchoppingblock", typeof(IDGChoppingBlock));
             api.RegisterBlockClass("idgsawbuck", typeof(IDGSawBuck));
+            api.RegisterBlockClass("idgsawhorse", typeof(IDGSawHorse));
 
             //Register BlockEntities
             api.RegisterBlockEntityClass("idgbechoppingblock", typeof(IDGBEChoppingBlock));
             api.RegisterBlockEntityClass("idgbesawbuck", typeof(IDGBESawBuck));
+            api.RegisterBlockEntityClass("idgbesawhorse", typeof(IDGBESawHorse));
 
 
             //Register CollectibleBehaviors

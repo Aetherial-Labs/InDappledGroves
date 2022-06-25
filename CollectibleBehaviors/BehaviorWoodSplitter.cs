@@ -104,12 +104,14 @@ namespace InDappledGroves
         //-- Spawns firewood when chopping cycle is finished --//
         public void SpawnOutput(CollectibleObject chopObj, EntityAgent byEntity, BlockPos pos, int dmg)
         {
-                Item output = api.World.GetItem(new AssetLocation(chopObj.Attributes["idgChoppingBlockProps"]["output"]["code"].AsString()));
+                Item itemOutput = api.World.GetItem(new AssetLocation(chopObj.Attributes["idgChoppingBlockProps"]["output"]["code"].AsString()));
+                Block blockOutput = api.World.GetBlock(new AssetLocation(chopObj.Attributes["idgChoppingBlockProps"]["output"]["code"].AsString()));
+
                 int quantity = chopObj.Attributes["idgChoppingBlockProps"]["output"]["quantity"].AsInt();
 
                 for (int i = quantity; i > 0; i--)
                 {
-                        api.World.SpawnItemEntity(new ItemStack(output), pos.ToVec3d() + new Vec3d(0, .25, 0));
+                        api.World.SpawnItemEntity(new ItemStack(itemOutput!=null?itemOutput:blockOutput), pos.ToVec3d() + new Vec3d(0, .25, 0));
                 }
 
                 if (byEntity is EntityPlayer player)

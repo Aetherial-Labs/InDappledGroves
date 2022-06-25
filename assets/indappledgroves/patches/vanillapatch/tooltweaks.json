@@ -47,5 +47,19 @@
     "value": "idgsaw",
     "file": "game:itemtypes/tool/saw.json",
     "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/woodSawerProps",
+    "value": {"groundSawTime": 6, "groundSawDamage": 3, "sawBuckSawTime": 4, "sawBuckSawDamage": 2},
+    "file": "game:itemtypes/tool/saw.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/behaviors",
+    "value": [{"name": "WoodSawer"}],
+    "file": "game:itemtypes/tool/saw.json",
+    "side": "server"
   }
 ]

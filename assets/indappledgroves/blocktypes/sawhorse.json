@@ -1,0 +1,67 @@
+{
+  "code": "sawhorse",
+  "class": "idgsawhorse",
+  "entityClass": "idgbesawhorse",
+  "maxstacksize": 16,
+  "attributes": {
+		"handbook": {
+			"groupBy": ["sawhorse-*"],
+			"extraSections": [
+				{ "title": "indappledgroves:sawhorse-handbook-help-title", "text": "indappledgroves:sawhorse-handbook-help-text" }
+			]
+		}
+	},	
+"behaviorsByType": {
+  "*":[
+    {"name": "Unstable" }, 
+    {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
+  ],
+  "*-composite": [
+    {"name": "Unstable" }, 
+    {"name": "Multiblock", "propertiesByType": 
+      {
+				"*-north": { "sizex": 2, "sizey": 1, "sizez": 1, "cposition": { "x": 0, "y": 0, "z": 0 }},
+				"*-east": { "sizex": 1, "sizey": 1, "sizez": 2, "cposition": { "x": 0, "y": 0, "z": 0 }},
+				"*-south": { "sizex": 2, "sizey": 1, "sizez": 1, "cposition": { "x": 1, "y": 0, "z": 0 }},
+				"*-west": { "sizex": 1, "sizey": 1, "sizez": 2, "cposition": { "x": 0, "y": 0, "z": 1 }} 
+			}
+		}
+    ]
+  },
+  "variantgroups": [
+    { "code": "type", "states": ["single","composite"]},
+    { "code": "support", "states": ["aged"], "loadFromProperties": "block/wood" },
+    { "code": "crossbrace", "states": ["aged"], "loadFromProperties": "block/wood"},
+    { "code": "side", "loadFromProperties": "abstract/horizontalorientation" }
+  ],
+  "heldTpIdleAnimation": "holdbothhandslarge",
+  "helpTpUseAnimation": "twohandplaceblock",
+  "creativeinventory": { "general": ["*-east"]},
+  "textures": {		
+      "support": { "base": "game:block/wood/planks/{support}1" },
+			"crossbrace": { "base": "game:block/wood/planks/{crossbrace}1" }
+  },
+  "shapeByType": {
+		"*-single-*-north": { "base": "block/sawhorse", "rotateY":90 },
+		"*-single-*-east": { "base": "block/sawhorse", "rotateY":0 },
+		"*-single-*-south": { "base": "block/sawhorse", "rotateY":270 },
+		"*-single-*-west": { "base": "block/sawhorse", "rotateY":180 },
+    "*-composite-*-north": { "base": "block/sawhorse", "rotateY":90 },
+		"*-composite-*-east": { "base": "block/sawhorse", "rotateY":0 },
+		"*-composite-*-south": { "base": "block/sawhorse", "rotateY":270 },
+		"*-composite-*-west": { "base": "block/sawhorse", "rotateY":180 }
+	}, 
+  "lightabsorption": 0,
+  "sideopaque": { "all": false },
+  "sidesolid": { "all": false },
+  "blockmaterial": "wood",
+  "sounds": {"place": "game:block/planks"},
+  "collisionboxByType": {
+    "*-single-*": {"x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 1, "z2": 1},
+    "*-composite-*": {"x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 1, "z2": 1}
+    },
+  "selectionBoxByType": {
+    "*-single-*": {"x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 1, "z2": 1},
+    "*-composite-*": {"x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 1, "z2": 1}
+  }
+}

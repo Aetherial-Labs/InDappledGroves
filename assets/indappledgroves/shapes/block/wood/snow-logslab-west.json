@@ -1,0 +1,57 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"elements": [
+		{
+			"name": "Cube1",
+			"from": [ 8.0, 0.0, 16.0 ], 
+			"to": [ 24.0, 8.0, 32.0 ], 
+			"rotationOrigin": [ 8.0, 0.0, 16.0 ],
+			"rotationX": -90.0,
+            "rotationZ": 90.0,
+			"faces": {
+				"north": { "texture": "#trunk", "uv": [ 0.0, 0.0, 16.0, 8.0 ] },
+				"east": { "texture": "#bark2", "uv": [ 0.0, 0.0, 8.0, 16.0 ], "rotation": 90 },
+				"south": { "texture": "#trunk", "uv": [ 0.0, 0.0, 16.0, 8.0 ] },
+				"west": { "texture": "#bark2", "uv": [ 0.0, 0.0, 8.0, 16.0 ], "rotation": 90 },
+				"up": { "texture": "#bark", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+				"down": { "texture": "#debarked", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "rotation": 90, "autoUv": false }
+			}
+		},
+		{
+			"name": "Base-snow",
+			"from": [ 0.0, 16.01, 0.0 ], 
+			"to": [ 8.0, 18.01, 16.0 ], 
+			"zOffset": 3,
+			"faces": {
+				"north": { "texture": "#snowcover", "uv": [ 8.0, 0.0, 16.0, 2.0 ] },
+				"east": { "texture": "#snowcover", "uv": [ 0.0, 0.0, 16.0, 2.0 ] },
+				"south": { "texture": "#snowcover", "uv": [ 0.0, 0.0, 8.0, 2.0 ] },
+				"west": { "texture": "#snowcover", "uv": [ 0.0, 0.0, 16.0, 2.0 ] },
+				"up": { "texture": "#snowcover", "uv": [ 6.5, 0.0, 14.5, 16.0 ] },
+				"down": { "texture": "#snowcover", "uv": [ 8.0, 0.0, 16.0, 16.0 ] }
+			}
+		},
+		{
+			"name": "Base-snow3",
+			"from": [ 8.0, 0.0, 0.0 ], 
+			"to": [ 16.0, 2.0, 16.0 ], 
+			"rotationOrigin": [ 8.0, -1.0, 0.0 ],
+			"zOffset": 3,
+			"faces": {
+				"north": { "texture": "#snowcover", "uv": [ 8.0, 0.0, 16.0, 2.0 ] },
+				"east": { "texture": "#snowcover", "uv": [ 0.0, 0.0, 16.0, 2.0 ] },
+				"south": { "texture": "#snowcover", "uv": [ 0.0, 0.0, 8.0, 2.0 ] },
+				"west": { "texture": "#snowcover", "uv": [ 0.0, 0.0, 16.0, 2.0 ] },
+				"up": { "texture": "#snowcover", "uv": [ 6.5, 0.0, 14.5, 16.0 ] },
+				"down": { "texture": "#snowcover", "uv": [ 8.0, 0.0, 16.0, 16.0 ] }
+			}
+		}
+
+	]}

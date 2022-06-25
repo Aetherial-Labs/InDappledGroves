@@ -9,12 +9,13 @@ namespace InDappledGroves.BlockEntities
 	{
 		public override InventoryBase Inventory { get; }
 		public override string InventoryClassName => "sawbuck";
-		//public override string AttributeTransformCode => "idgChoppingBlockTransform";
+
+		//public override string AttributeTransformCode => "onDisplayTransform";
+		public override string AttributeTransformCode => "idgSawBuckTransform";
 		public IDGBESawBuck()
 		{
 			Inventory = new InventoryGeneric(1, "sawbuck-slot", null, null);
-			meshes = new MeshData[1];
-
+			meshes = new MeshData[0];
 		}
 
 		public override void Initialize(ICoreAPI api)
@@ -43,7 +44,7 @@ namespace InDappledGroves.BlockEntities
 
 			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;
 			JsonObject attributes = collectible.Attributes;
-			if (attributes == null || !collectible.Attributes["idgChoppingBlockProps"]["cuttable"].AsBool(false))
+			if (attributes == null || !collectible.Attributes["idgSawBuckProps"]["sawable"].AsBool(false))
 			{
 				return false;
 			}

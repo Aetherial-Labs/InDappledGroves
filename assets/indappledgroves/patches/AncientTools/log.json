@@ -4,7 +4,7 @@
     "path": "/attributes/idgChoppingBlockProps",
     "value": {
           "cuttable": true,
-          "output": {"code": "game:firewood", "quantity": 4}
+           "output": {"code": "indappledgroves:logslab-{wood}-debarked-east-free", "quantity": 2}
     },
     "file": "ancienttools:blocktypes/strippedlog.json",
     "side": "server",

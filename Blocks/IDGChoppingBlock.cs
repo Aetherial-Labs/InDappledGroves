@@ -102,8 +102,11 @@ namespace InDappledGroves.Blocks
                 }
                 if (secondsUsed >= chopTool.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopTime)
                 {
-					chopTool.GetBehavior<BehaviorWoodSplitter>().SpawnOutput(recipe, byPlayer.Entity, blockSel.Position, chopTool.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopDamage);
-                    bechoppingblock.Inventory.Clear();
+
+					chopTool.GetBehavior<BehaviorWoodSplitter>().SpawnOutput(bechoppingblock.Inventory[0].Itemstack.Collectible, 
+					byPlayer.Entity, blockSel.Position, chopTool.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopDamage);
+
+          bechoppingblock.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
 					bechoppingblock.MarkDirty(true);
                 }		

@@ -2,5 +2,16 @@
   "itemhelp-axe-chopwood": "Shift+Right Click To Chop into Firewood",
   "itemhelp-saw-sawwood": "Shift+Right Click To Saw into Planks",
   "block-choppingblock-*": "Chopping Block",
-  "toolittledurability": "Your tool requires {0} durability to do this."
+  "toolittledurability": "Your tool requires {0} durability to do this.",
+	
+	"_comment": "Blocks Are Listed Below",
+  "block-logslab-aged-down-free": "Aged Log Slab",
+	"block-logslab-birch-down-free": "Birch Log Slab",
+	"block-logslab-oak-down-free": "Oak Log Slab",
+	"block-logslab-maple-down-free": "Maple Log Slab",
+	"block-logslab-pine-down-free": "Pine Log Slab",
+	"block-logslab-acacia-down-free": "Acacia Log Slab",
+	"block-logslab-kapok-down-free": "Kapok Log Slab",
+
+
 }

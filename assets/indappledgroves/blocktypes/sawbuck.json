@@ -12,7 +12,7 @@
 		}
 	},	
     "behaviors": [
-    {"name": "Unstable" }, {"name": "HorizontalOrientable"}
+    {"name": "Unstable" }, {"name": "HorizontalOrientable", properties: {  dropBlockFace: "east" }}
   ],
   "variantgroups": [
     { "code": "support", "states": ["aged"], "loadFromProperties": "block/wood" },

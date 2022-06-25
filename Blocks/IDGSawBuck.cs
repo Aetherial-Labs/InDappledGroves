@@ -1,13 +1,9 @@
 ﻿using InDappledGroves.BlockEntities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using InDappledGroves.CollectibleBehaviors;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
-using Vintagestory.GameContent;
 
 namespace InDappledGroves.Blocks
 {
@@ -24,45 +20,45 @@ namespace InDappledGroves.Blocks
 			ItemStack chopToolStack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
 			CollectibleObject chopCollObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
 
-			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
-			if (chopCollObj != null && chopCollObj.HasBehavior<BehaviorWoodSplitter>()
-				&& !bechoppingblock.Inventory.Empty)
+			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck besawbuck) return base.OnBlockInteractStart(world, byPlayer, blockSel);
+			if (chopCollObj != null && chopCollObj.HasBehavior<BehaviorWoodSawer>()
+				&& !besawbuck.Inventory.Empty)
 			{
-				if (chopToolStack.Attributes.GetInt("durability") < chopCollObj.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopDamage)
+				if (chopToolStack.Attributes.GetInt("durability") < chopCollObj.GetBehavior<BehaviorWoodSawer>().sawBuckSawDamage)
 				{
-					(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", chopCollObj.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopDamage));
+					(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", chopCollObj.GetBehavior<BehaviorWoodSawer>().sawBuckSawDamage));
 					return base.OnBlockInteractStart(world, byPlayer, blockSel);
 				}
 
 				byPlayer.Entity.StartAnimation("axechop");
 				return true;
 			}
-			return bechoppingblock.OnInteract(byPlayer);
+			return besawbuck.OnInteract(byPlayer);
 		}
 
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			CollectibleObject chopTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
-			IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock;
+			IDGBESawBuck bebesawbuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
 			BlockPos pos = blockSel.Position;
 
-			if (chopTool != null && chopTool.HasBehavior<BehaviorWoodSplitter>() && !bechoppingblock.Inventory.Empty)
+			if (chopTool != null && chopTool.HasBehavior<BehaviorWoodSawer>() && !bebesawbuck.Inventory.Empty)
 			{
 				if (playNextSound < secondsUsed)
 				{
 					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
 					playNextSound += .7f;
 				}
-				if (secondsUsed >= chopTool.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopTime)
+				if (secondsUsed >= chopTool.GetBehavior<BehaviorWoodSawer>().sawBuckSawTime)
 				{
-					chopTool.GetBehavior<BehaviorWoodSplitter>().SpawnOutput(bechoppingblock.Inventory[0].Itemstack.Collectible,
-						byPlayer.Entity, blockSel.Position, chopTool.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopDamage);
+					chopTool.GetBehavior<BehaviorWoodSawer>().SpawnOutput(bebesawbuck.Inventory[0].Itemstack.Collectible,
+						byPlayer.Entity, blockSel.Position, chopTool.GetBehavior<BehaviorWoodSawer>().sawBuckSawDamage);
 
-					bechoppingblock.Inventory.Clear();
-					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
-					bechoppingblock.MarkDirty(true);
+					bebesawbuck.Inventory.Clear();
+					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck).updateMeshes();
+					bebesawbuck.MarkDirty(true);
 				}
-				return !bechoppingblock.Inventory.Empty;
+				return !bebesawbuck.Inventory.Empty;
 			}
 			return false;
 		}

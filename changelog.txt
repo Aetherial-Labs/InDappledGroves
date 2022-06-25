@@ -1,4 +1,14 @@
 ﻿1.16-v0.2.0
+	- Added Saw Buck Block
+		- Added CollisionBox and SelectionBox
+		- Added Wood Variants
+	- Added Saw Buck Block Entity
+		- Refactored Code to check for saw related properties instead of chopBlock related properties
+	- Added Log Slabs
+	- Refactored Chopping Block process to drop log slabs instead of firewood
+	- Added chopping block interaction for log slabs that produces firewood
+	- Updated spawnOutput code to accept block or item output.
+	- Updated spawn
 
 1.16-v0.1.0-dev.1
 	- Added Chopping Block Functionality
