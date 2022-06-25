@@ -26,6 +26,10 @@ namespace InDappledGroves.BlockEntities
 				this.updateMeshes();
 			}
 		}
+		public ItemSlot InputSlot
+		{
+			get { return Inventory[0]; }
+		}
 
 		internal bool OnInteract(IPlayer byPlayer)
 		{

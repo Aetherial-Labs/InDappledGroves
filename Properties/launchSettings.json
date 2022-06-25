@@ -2,8 +2,7 @@
   "profiles": {
     "InDappledGroves": {
       "commandName": "Project",
-      "commandLineArgs": "--addModPath=\"C:\\Users\\Owner\\source\\repos\\InDappledGroves\\bin\\Debug\" --addOrigin=\"C:\\Users\\Owner\\source\\repos\\InDappledGroves\\assets\"",
-      "workingDirectory": "C:\\Users\\Owner\\AppData\\Roaming\\VintageStory\\VS1165"
+      "commandLineArgs": "--addModPath=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\bin\\Debug\" --addOrigin=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\assets\""
     }
   }
 }

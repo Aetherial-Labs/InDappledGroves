@@ -4,6 +4,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
+using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves
 {
@@ -114,6 +115,20 @@ namespace InDappledGroves
                 }
 
                 if (byEntity is EntityPlayer player)
+                player.RightHandItemSlot.Itemstack.Collectible.DamageItem(api.World, byEntity, player.RightHandItemSlot, groundChopDamage);
+
+        }
+
+        public void SpawnOutput(SplittingRecipe recipe, EntityAgent byEntity, BlockPos pos, int dmg)
+        {
+            Item output = recipe.Output.ResolvedItemstack.Item;
+            int quantity = recipe.Output.Quantity;
+            for (int i = quantity; i > 0; i--)
+            {
+                api.World.SpawnItemEntity(new ItemStack(output), pos.ToVec3d() + new Vec3d(0, .25, 0));
+            }
+
+            if (byEntity is EntityPlayer player)
                 player.RightHandItemSlot.Itemstack.Collectible.DamageItem(api.World, byEntity, player.RightHandItemSlot, groundChopDamage);
 
         }

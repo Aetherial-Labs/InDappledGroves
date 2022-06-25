@@ -32,12 +32,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\AppData\Roaming\VintageStory\VS1165\Lib\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1165\Lib\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AppData\Roaming\VintageStory\VS1165\Lib\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="cairo-sharp">
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1165\Lib\cairo-sharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1165\Lib\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1165\Lib\protobuf-net.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -48,33 +55,28 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="VintagestoryAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AppData\Roaming\VintageStory\VS1165\VintagestoryAPI.dll</HintPath>
+    <Reference Include="VintagestoryAPI">
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1165\VintagestoryAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="VintagestoryLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AppData\Roaming\VintageStory\VS1165\VintagestoryLib.dll</HintPath>
+    <Reference Include="VintagestoryLib">
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1165\VintagestoryLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VSBuildLib">
-      <HintPath>..\..\..\..\AppData\Roaming\VintageStory\VS1165\VSBuildLib.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1165\VSBuildLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="VSCreativeMod, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AppData\Roaming\VintageStory\VS1165\Mods\VSCreativeMod.dll</HintPath>
+    <Reference Include="VSCreativeMod">
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1165\Mods\VSCreativeMod.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="VSEssentials, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AppData\Roaming\VintageStory\VS1165\Mods\VSEssentials.dll</HintPath>
+    <Reference Include="VSEssentials">
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1165\Mods\VSEssentials.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="VSSurvivalMod, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AppData\Roaming\VintageStory\VS1165\Mods\VSSurvivalMod.dll</HintPath>
+    <Reference Include="VSSurvivalMod">
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1165\Mods\VSSurvivalMod.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

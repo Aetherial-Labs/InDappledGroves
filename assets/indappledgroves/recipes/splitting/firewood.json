@@ -1,0 +1,10 @@
+[
+  {
+    "ingredients": [{inputs: [{"type": "block", "code": "game:log-*"}]}],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+  },
+  {
+    "ingredients":[ {inputs: [{"type": "block", "code": "game:logsection-placed-*"}]}],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 8}
+  }
+]
