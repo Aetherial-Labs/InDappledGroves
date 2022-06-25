@@ -2,6 +2,7 @@
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
@@ -128,18 +129,27 @@ namespace InDappledGroves.BlockEntities
         //    return meshData;
         //}
 
-        public override void OnBlockBroken(IPlayer byPlayer = null)
+        public override void ToTreeAttributes(ITreeAttribute tree)
         {
-            if (isConBlock && !inv[1].Empty)
-            {
-                System.Diagnostics.Debug.WriteLine(inv[1].Itemstack.ToString());
-                Api.World.SpawnItemEntity(inv[1].TakeOutWhole(), Pos.ToVec3d());
-            }
-            else
-            {
-                if (conBlock != null) (Api.World.BlockAccessor.GetBlockEntity(conBlock) as IDGBESawHorse).OnBlockBroken(byPlayer);
-            }
-            base.OnBlockBroken(byPlayer);
+            
+            tree.SetBool("ispaired", isPaired);
+            tree.SetBool("isconblock", isConBlock);
+            if (conBlock != null)
+                tree.SetBlockPos("conblock", conBlock);
+            if (pairedBlock != null)
+                tree.SetBlockPos("pairedblock", pairedBlock);
+            base.ToTreeAttributes(tree);
+
+        }
+
+        public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
+        {
+            base.FromTreeAttributes(tree, worldForResolving);
+
+            tree.GetBool("ispaired");
+            tree.GetBool("isconblock");
+            tree.GetBlockPos("conblock", null);
+            tree.GetBlockPos("pairedblock", null);
         }
 
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)

@@ -1,4 +1,14 @@
-﻿1.16-v0.2.0
+﻿1.16-v0.3.0
+	- Added Sawhorse Block
+		- Added multiblock feature. When a sawhorse block is right-clicked on any unpaired sawhorse block, it will pair with it.
+		- The block that was clicked becomes the controller, the held block gets placed and becomes the subordinate block.
+		- Added BlockEntity Interaction for adding and removing boards
+	- Added Sawhorse Block Entity
+		- Added logic for recognizing controller block and performing all functions through it.
+		- Introduced TryPut/TryTake methods for adding and removing planks from the BE.
+		- Added an interaction that returns two boards instead of one when using an axe on the sawhorse station. (Proof of Concept)
+
+1.16-v0.2.0
 	- Added Saw Buck Block
 		- Added CollisionBox and SelectionBox
 		- Added Wood Variants
