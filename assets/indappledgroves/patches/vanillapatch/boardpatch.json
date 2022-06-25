@@ -1,0 +1,8 @@
+[
+  {
+    "op": "add",
+    "path": "/attributes/idgSawHorseProps",
+    "value": {"planable": true},
+    "file": "game:itemtypes/resource/plank.json"
+  }
+]

@@ -34,6 +34,9 @@
     <None Update="assets\indappledgroves\patches\AncientTools\log.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\vanillapatch\boardpatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\patches\vanillapatch\log.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

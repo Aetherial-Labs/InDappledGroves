@@ -16,20 +16,8 @@
     {"name": "Unstable" }, 
     {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
   ],
-  "*-composite": [
-    {"name": "Unstable" }, 
-    {"name": "Multiblock", "propertiesByType": 
-      {
-				"*-north": { "sizex": 2, "sizey": 1, "sizez": 1, "cposition": { "x": 0, "y": 0, "z": 0 }},
-				"*-east": { "sizex": 1, "sizey": 1, "sizez": 2, "cposition": { "x": 0, "y": 0, "z": 0 }},
-				"*-south": { "sizex": 2, "sizey": 1, "sizez": 1, "cposition": { "x": 1, "y": 0, "z": 0 }},
-				"*-west": { "sizex": 1, "sizey": 1, "sizez": 2, "cposition": { "x": 0, "y": 0, "z": 1 }} 
-			}
-		}
-    ]
   },
   "variantgroups": [
-    { "code": "type", "states": ["single","composite"]},
     { "code": "support", "states": ["aged"], "loadFromProperties": "block/wood" },
     { "code": "crossbrace", "states": ["aged"], "loadFromProperties": "block/wood"},
     { "code": "side", "loadFromProperties": "abstract/horizontalorientation" }
@@ -42,26 +30,42 @@
 			"crossbrace": { "base": "game:block/wood/planks/{crossbrace}1" }
   },
   "shapeByType": {
-		"*-single-*-north": { "base": "block/sawhorse", "rotateY":90 },
-		"*-single-*-east": { "base": "block/sawhorse", "rotateY":0 },
-		"*-single-*-south": { "base": "block/sawhorse", "rotateY":270 },
-		"*-single-*-west": { "base": "block/sawhorse", "rotateY":180 },
-    "*-composite-*-north": { "base": "block/sawhorse", "rotateY":90 },
-		"*-composite-*-east": { "base": "block/sawhorse", "rotateY":0 },
-		"*-composite-*-south": { "base": "block/sawhorse", "rotateY":270 },
-		"*-composite-*-west": { "base": "block/sawhorse", "rotateY":180 }
+		"*-north": { "base": "block/sawhorse", "rotateY":90 },
+		"*-east": { "base": "block/sawhorse", "rotateY":0 },
+		"*-south": { "base": "block/sawhorse", "rotateY":270 },
+		"*-west": { "base": "block/sawhorse", "rotateY":180 }
 	}, 
   "lightabsorption": 0,
   "sideopaque": { "all": false },
   "sidesolid": { "all": false },
   "blockmaterial": "wood",
   "sounds": {"place": "game:block/planks"},
-  "collisionboxByType": {
-    "*-single-*": {"x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 1, "z2": 1},
-    "*-composite-*": {"x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 1, "z2": 1}
-    },
-  "selectionBoxByType": {
-    "*-single-*": {"x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 1, "z2": 1},
-    "*-composite-*": {"x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 1, "z2": 1}
-  }
+  "collisionBoxes":[
+    { x1: 0.094, y1: 0, z1: 0, x2: 0.875, y2: 0.75, z2: 1, "rotateYByType": {
+          "*-north": 90,
+          "*-east": 0,
+          "*-south": 270,
+          "*-west": 180
+        }},
+    { x1: 0, y1: 0.75, z1: 0.625, x2: 1, y2: 0.8125, z2: 0.375, "rotateYByType": {
+          "*-north": 90,
+          "*-east": 0,
+          "*-south": 270,
+          "*-west": 180
+        }}
+  ],
+  "selectionBoxes": [
+		{ x1: 0.094, y1: 0, z1: 0, x2: 0.875, y2: 0.75, z2: 1, "rotateYByType": {
+          "*-north": 90,
+          "*-east": 0,
+          "*-south": 270,
+          "*-west": 180
+        }},
+		{ x1: 0, y1: 0.75, z1: 0.625, x2: 1, y2: 0.8125, z2: 0.375, "rotateYByType": {
+          "*-north": 90,
+          "*-east": 0,
+          "*-south": 270,
+          "*-west": 180
+    }}
+	]
 }
