@@ -25,7 +25,8 @@
               "z": 0.5
             }
           }
-      },
+      }
+      ,
       "idgSawBuckProps": {
           "idgSawBuckTransform": {
               "translation": {

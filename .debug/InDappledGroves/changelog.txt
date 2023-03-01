@@ -1,4 +1,8 @@
-﻿1.17-v0.4.8
+﻿1.18-v0.4.8-pre.3-dev.3
+	- Rendering process updated, workstation classes trimmed down.
+	- Tree Hollows and stumps updated for proper functionality
+
+1.17-v0.4.8
 	- Corrected axes not working with Fern Trees, Fruit Trees, and Bamboo.
 	- Updated Adze to have tooltype Hoe in it's itemtype to make ToolDurabilityModifier apply to it directly. May have unintended consequences.
 	- Updated Adze ground recipes for logs to drop 4 bark per log rather than 2.
@@ -11,7 +15,7 @@
 	- Corrected bark converting to last piece used (Noelle?)
 	- Made it possible to pick up a placed piece of firewood by right-clicking it.
 		- Further, this involved implementing a new behavior that may, in reality, just be a rewrite of the existing PickUpOnRightClick.
-	- Wildcraft Trees compatibilty complete(?)
+	- Wildcraft Trees compatibilty complete
 	- Released for testing to Patrons.
 
 

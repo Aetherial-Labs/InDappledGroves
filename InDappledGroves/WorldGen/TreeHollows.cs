@@ -15,28 +15,21 @@ namespace InDappledGroves.WorldGen
 
     public class TreeHollows : ModSystem
     {
-        private const int MinItems = 1;
-        private const int MaxItems = 8;
+
         private ICoreServerAPI sapi; //The main interface we will use for interacting with Vintage Story
-        private ICoreClientAPI capi;
         private int chunkSize; //Size of chunks. Chunks are cubes so this is the size of the cube.
         private ISet<string> treeTypes; //Stores tree types that will be used for detecting trees for placing our tree hollows
         private ISet<string> stumpTypes; //Stores tree types that will be used for detecting trees for placing our tree hollows
         private IBlockAccessor chunkGenBlockAccessor; //Used for accessing blocks during chunk generation
         private IBlockAccessor worldBlockAccessor; //Used for accessing blocks after chunk generation
 
-        private string[] dirs = { "north", "south", "east", "west" };
-        private List<string> woods = new();
-        private List<string> stumps = new();
+        private readonly string[] dirs = { "north", "south", "east", "west" };
+        private readonly List<string> woods = new();
+        private readonly List<string> stumps = new();
 
         public override void StartServerSide(ICoreServerAPI api)
         {
             this.sapi = api;
-            //if (api.ModLoader.IsModEnabled("wildcrafttrees"))
-            //{
-            //    woods.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
-            //    stumps.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
-            //}
             
             this.worldBlockAccessor = api.World.BlockAccessor;
             this.chunkSize = this.worldBlockAccessor.ChunkSize;
@@ -74,7 +67,7 @@ namespace InDappledGroves.WorldGen
 
                     if (chunk.GetModdata<bool>("hasIDGLoaded", false) == true) break;
 
-                    runTreeGen(chunk, new BlockPos(chunkCoord.X, 0, chunkCoord.Y));
+                    runTreeGen(new BlockPos(chunkCoord.X, 0, chunkCoord.Y));
                     chunk.SetModdata<bool>("hasIDGLoaded", true);
                 }
             }
@@ -126,12 +119,12 @@ namespace InDappledGroves.WorldGen
             //Debug.WriteLine("Entering the death loop for chunk " + chunkX + " " + chunkZ);
             for (var i = 0; i < chunks.Length; i++)
             {
-                runTreeGen(chunks[i], new BlockPos(chunkX,0,chunkZ));
+                runTreeGen(new BlockPos(chunkX,0,chunkZ));
                 chunks[i].SetModdata<bool>("hasIDGLoaded", true);
             }
         }
 
-        private void runTreeGen(IWorldChunk chunk, BlockPos pos)
+        private void runTreeGen(BlockPos pos)
         {
             var hollowsPlacedCount = 0;
 
@@ -336,12 +329,10 @@ namespace InDappledGroves.WorldGen
         private ItemStack[] ConvertTreeLoot(JsonObject[] treeLoot, BlockPos pos)
         {
             List<ItemStack> lootList = null;
-            int lootCount = 0;
-            ClimateCondition climate = sapi.World.BlockAccessor.GetClimateAt(pos);
             foreach (JsonObject lootStack in treeLoot)
             {
 
-                TreeLootObject obj = new TreeLootObject(lootStack);
+                TreeLootObject obj = new(lootStack);
                 if (lootList == null && ClimateLootFilter(obj, pos))
                 {
                     obj.bstack.Resolve(sapi.World, "treedrop: ", obj.bstack.Code);
@@ -357,7 +348,7 @@ namespace InDappledGroves.WorldGen
                 }
             }
 
-            return lootList == null ? null : lootList.ToArray();
+            return lootList?.ToArray();
         }
 
         private bool ClimateLootFilter(TreeLootObject obj, BlockPos pos)

@@ -14,7 +14,6 @@ namespace InDappledGroves.CollectibleBehaviors
 {
     class BehaviorWoodHewing : CollectibleBehavior, IBehaviorVariant
     {
-        ICoreAPI api;
         ICoreClientAPI capi;
 
         public GroundRecipe recipe;
@@ -35,19 +34,7 @@ namespace InDappledGroves.CollectibleBehaviors
         }
         public override void OnLoaded(ICoreAPI api)
         {
-            this.api = api;
             this.capi = (api as ICoreClientAPI);
-
-            //interactions = ObjectCacheUtil.GetOrCreate(api, "idgadzeInteractions", () =>
-            //{
-            //    return new WorldInteraction[] {
-            //        new WorldInteraction()
-            //            {
-            //                ActionLangCode = "indappledgroves:itemhelp-adze-hewwood",
-            //                MouseButton = EnumMouseButton.Right
-            //            },
-            //        };
-            //});
 
             this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAdzeModes", delegate
             {
@@ -74,9 +61,6 @@ namespace InDappledGroves.CollectibleBehaviors
                 return array;
             });
         }
-
-
-        WorldInteraction[] interactions;
         public SkillItem[] toolModes;
     }
 }

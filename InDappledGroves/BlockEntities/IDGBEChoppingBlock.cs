@@ -49,9 +49,6 @@ namespace InDappledGroves.BlockEntities
 				return this.TryTake(byPlayer);
 			}
 
-			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;	
-
-            ItemStack itemstack = activeHotbarSlot.Itemstack;
 			AssetLocation assetLocation;
 			if (activeHotbarSlot.Empty)
 			{
@@ -132,43 +129,14 @@ namespace InDappledGroves.BlockEntities
 
 
 		#region ProcessTransform
-		/// <summary>
-		/// Processes the transform.
-		/// </summary>
-		/// <param name="transform">The transform.</param>
-		/// <param name="side">The side.</param>
-		/// <returns></returns>
-		/// 
-
 		protected ModelTransform genTransform(ItemStack stack)
 		{
-			MeshData meshData;
-			String side = Block.Variant["side"];
-			if (stack != null && stack.Collectible is IContainedMeshSource containedMeshSource)
-			{
-				meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
-				meshData.Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0f, base.Block.Shape.rotateY * 0.017453292f, 0f);
-			}
-			else if (capi != null)
-			{
-				this.nowTesselatingObj = stack.Collectible;
-				this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Collectible is Block ? (stack.Block.ShapeInventory?.Base == null ? stack.Block.Shape.Base : stack.Block.ShapeInventory.Base) : stack.Item.Shape.Base);
-				if (stack.Collectible is Block)
-				{
-					capi.Tesselator.TesselateShape(stack.Collectible, nowTesselatingShape, out meshData, null, null, null);
-				}
-				else
-				{
-					capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
-				}
-
-
-			}
 
 			ModelTransform transform;
+			String side = Block.Variant["side"];
 			if (stack != null && stack.Collectible.Attributes["workStationTransforms"].Exists)
 			{
-				transform = stack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists ? stack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>() : null;
+				transform = ProcessTransform(stack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>(), side);
 			}
 			else
 			{
@@ -187,8 +155,6 @@ namespace InDappledGroves.BlockEntities
 			}
 
 			transform.EnsureDefaultValues();
-
-			if (stack != null) transform = ProcessTransform(transform, side);
 			return transform;
 		}
 
@@ -226,7 +192,12 @@ namespace InDappledGroves.BlockEntities
 
 		public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
 		{
-			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
+            if (world is null)
+            {
+                throw new ArgumentNullException(nameof(world));
+            }
+
+            List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
 			if (recipes == null) return false;
 
 			for (int j = 0; j < recipes.Count; j++)
@@ -256,7 +227,7 @@ namespace InDappledGroves.BlockEntities
 			return null;
 		}
 
-		public void SpawnOutput(ChoppingBlockRecipe recipe, EntityAgent byEntity, BlockPos pos)
+		public void SpawnOutput(ChoppingBlockRecipe recipe, BlockPos pos)
 		{
 			int j = recipe.Output.StackSize;
 			for (int i = j; i > 0; i--)
@@ -276,28 +247,11 @@ namespace InDappledGroves.BlockEntities
 			float[][] tfMatrices = new float[1][];
 			for (int index = 0; index < 1; index++)
 			{
-
-				ItemSlot itemSlot = this.Inventory[index];
-				JsonObject jsonObject;
-				if (itemSlot == null)
+				ItemStack itemstack = this.Inventory[index].Itemstack;
+				if (itemstack != null)
 				{
-					jsonObject = null;
+					tfMatrices[index] = new Matrixf().Set(genTransform(itemstack).AsMatrix).Values;
 				}
-				else
-				{
-					ItemStack itemstack = itemSlot.Itemstack;
-					if (itemstack == null)
-					{
-						jsonObject = null;
-					}
-					else
-					{
-						CollectibleObject collectible = itemstack.Collectible;
-						jsonObject = ((collectible != null) ? collectible.Attributes : null);
-						tfMatrices[index] = new Matrixf().Set(genTransform(itemstack).AsMatrix).Values;
-					}
-				}
-				
 			}
 			return tfMatrices;
 		}

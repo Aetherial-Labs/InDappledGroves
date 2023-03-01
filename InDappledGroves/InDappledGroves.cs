@@ -44,7 +44,7 @@ namespace InDappledGroves
             api.RegisterBlockEntityClass("betreehollowplaced", typeof(BETreeHollowPlaced));
 
             //Register CollectibleBehaviors
-            api.RegisterCollectibleBehaviorClass("woodsplitter", typeof(BehaviorWoodChopping));
+            //api.RegisterCollectibleBehaviorClass("woodsplitter", typeof(BehaviorWoodChopping));
             api.RegisterCollectibleBehaviorClass("woodsawer", typeof(BehaviorWoodSawing));
             api.RegisterCollectibleBehaviorClass("woodplaner", typeof(BehaviorWoodPlaning));
             api.RegisterCollectibleBehaviorClass("woodhewer", typeof(BehaviorWoodHewing));

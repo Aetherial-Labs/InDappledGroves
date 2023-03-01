@@ -173,31 +173,14 @@ namespace InDappledGroves.BlockEntities
 
 		protected ModelTransform genTransform(ItemStack stack)
 		{
-			MeshData meshData;
 			String side = Block.Variant["side"];
 			ModelTransform transform;
-				if (stack != null && stack.Collectible is IContainedMeshSource containedMeshSource)
-				{
-					meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
-					meshData.Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0f, base.Block.Shape.rotateY * 0.017453292f, 0f);
-				}
-				else if (capi != null)
-				{
-					this.nowTesselatingObj = stack.Collectible;
-					this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Collectible is Block ? (stack.Block.ShapeInventory?.Base == null ? stack.Block.Shape.Base : stack.Block.ShapeInventory.Base) : stack.Item.Shape.Base);
-					if (stack.Collectible is Block)
-					{
-						capi.Tesselator.TesselateShape(stack.Collectible, nowTesselatingShape, out meshData, null, null, null);
-					}
-					else
-					{
-						capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
-					}
 
-
-				}
-				transform = stack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"].Exists ? stack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"].AsObject<ModelTransform>() : null;
-			if (transform == null)
+			if (stack != null && stack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"].Exists)
+			{
+				transform = ProcessTransform(stack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"].AsObject<ModelTransform>(), side);
+			}
+			else 
 			{
 				transform = new ModelTransform
 				{
@@ -206,9 +189,8 @@ namespace InDappledGroves.BlockEntities
 					Origin = new Vec3f()
 				};
 			}
-			transform.EnsureDefaultValues();
 
-			if (stack != null) transform = ProcessTransform(transform, side);
+			transform.EnsureDefaultValues();
 			return transform;
 		}
 
@@ -262,32 +244,14 @@ namespace InDappledGroves.BlockEntities
 			float[][] tfMatrices = new float[1][];
 			for (int index = 0; index < 1; index++)
 			{
-
-				ItemSlot itemSlot = this.Inventory[index];
-				JsonObject jsonObject;
-				if (itemSlot == null)
-				{
-					jsonObject = null;
-				}
-				else
-				{
-					ItemStack itemstack = itemSlot.Itemstack;
-					if (itemstack == null)
+					ItemStack itemstack = this.Inventory[index].Itemstack;
+					if (itemstack != null)
 					{
-						jsonObject = null;
-					}
-					else
-					{
-						CollectibleObject collectible = itemstack.Collectible;
-						jsonObject = ((collectible != null) ? collectible.Attributes : null);
 						tfMatrices[index] = new Matrixf().Set(genTransform(itemstack).AsMatrix).Values;
 					}
-				}
-
 			}
 			return tfMatrices;
 		}
 
-		private readonly Matrixf mat = new();
 	}
 }

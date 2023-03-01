@@ -14,7 +14,6 @@ namespace InDappledGroves.CollectibleBehaviors
 {
     class BehaviorWoodSawing : CollectibleBehavior, IBehaviorVariant
     {
-        ICoreAPI api;
         ICoreClientAPI capi;
         public InventoryBase Inventory { get; }
         public string InventoryClassName => "worldinventory";
@@ -39,7 +38,6 @@ namespace InDappledGroves.CollectibleBehaviors
         }
         public override void OnLoaded(ICoreAPI api)
         {
-            this.api = api;
             this.capi = (api as ICoreClientAPI);
 
 
@@ -70,8 +68,6 @@ namespace InDappledGroves.CollectibleBehaviors
             });
         }
 
-        WorldInteraction[] interactions;
-        private float playNextSound;
     }
 }
 

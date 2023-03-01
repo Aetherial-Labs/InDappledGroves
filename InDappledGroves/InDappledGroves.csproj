@@ -514,6 +514,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ALCMY1\ALCMY1\ALCMY1.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Lib\0Harmony.dll</HintPath>
       <Private>false</Private>

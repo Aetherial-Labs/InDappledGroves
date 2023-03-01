@@ -46,10 +46,9 @@
 
         public void TreeHollowUpdate(float par)
         {
-            var block = this.Api.World.BlockAccessor.GetBlock(this.Pos, BlockLayersAccess.Default) as BlockTreeHollowGrown;
             if (this.Inventory[0].Empty)
             {
-                var uf = new TreeHollows();
+                //var uf = new TreeHollows();
                 this.MarkDirty();
             }
         }
@@ -161,7 +160,7 @@
         public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
         {
             MeshData mesh;
-            if (!(this.Api.World.BlockAccessor.GetBlock(this.Pos, BlockLayersAccess.Default) is BlockTreeHollowGrown block))
+            if (this.Api.World.BlockAccessor.GetBlock(this.Pos, BlockLayersAccess.Default) is not BlockTreeHollowGrown block)
             { return base.OnTesselation(mesher, tesselator); }
             mesh = this.capi.TesselatorManager.GetDefaultBlockMesh(block); //add tree hollow
             mesher.AddMeshData(mesh);

@@ -5,7 +5,7 @@
   "authors": ["Vinter Nacht"],
   "contributors": ["Taska Raine", "SpearAndFang", "DJVirus"],
   "description": "'All I need is my cross cut saw, My double bit axe and eighty trees to fall.' - Crosscut Saw - Van Wagner",
-  "version": "0.4.7",
+  "version": "0.4.8-dev.3",
   "dependencies": {
   }
 }

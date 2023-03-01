@@ -81,7 +81,7 @@ namespace InDappledGroves.Blocks
 				if ( curMiningProgress >= curResistance) 
 				{
 
-					bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+					bechoppingblock.SpawnOutput(recipe, blockSel.Position);
 
 					EntityPlayer playerEntity = byPlayer.Entity;
 

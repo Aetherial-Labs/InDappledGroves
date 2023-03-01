@@ -123,7 +123,6 @@ namespace InDappledGroves
             float leavesMul = 1;
             float leavesBranchyMul = 0.8f;
             int blocksbroken = 0;
-            bool isStump = api.World.BlockAccessor.GetBlock(blockSel.Position).FirstCodePart() == "treestump";
             while (foundPositions.Count > 0)
             {
                 BlockPos pos = foundPositions.Pop();
@@ -202,7 +201,8 @@ namespace InDappledGroves
 
             if (startBlock.Code.FirstCodePart() == "treestump")
             {
-                startPos = secondPos != null ? secondPos : startPos;
+                //startPos = secondPos != null ? secondPos : startPos;
+                startPos = secondPos ?? startPos;
             }
 
             Block block = world.BlockAccessor.GetBlock(startPos, 0);
@@ -285,27 +285,27 @@ namespace InDappledGroves
             return foundPositions;
         }
 
-        //Particle Handlers
-        private SimpleParticleProperties InitializeWoodParticles()
-        {
-            return new SimpleParticleProperties()
-            {
-                MinPos = new Vec3d(),
-                AddPos = new Vec3d(),
-                MinQuantity = 0,
-                AddQuantity = 3,
-                Color = ColorUtil.ToRgba(100, 200, 200, 200),
-                GravityEffect = 1f,
-                WithTerrainCollision = true,
-                ParticleModel = EnumParticleModel.Quad,
-                LifeLength = 0.5f,
-                MinVelocity = new Vec3f(-1, 2, -1),
-                AddVelocity = new Vec3f(2, 0, 2),
-                MinSize = 0.07f,
-                MaxSize = 0.1f,
-                WindAffected = true
-            };
-        }
+        //Particle Handlers -> Get Particles Working
+        //private SimpleParticleProperties InitializeWoodParticles()
+        //{
+        //    return new SimpleParticleProperties()
+        //    {
+        //        MinPos = new Vec3d(),
+        //        AddPos = new Vec3d(),
+        //        MinQuantity = 0,
+        //        AddQuantity = 3,
+        //        Color = ColorUtil.ToRgba(100, 200, 200, 200),
+        //        GravityEffect = 1f,
+        //        WithTerrainCollision = true,
+        //        ParticleModel = EnumParticleModel.Quad,
+        //        LifeLength = 0.5f,
+        //        MinVelocity = new Vec3f(-1, 2, -1),
+        //        AddVelocity = new Vec3f(2, 0, 2),
+        //        MinSize = 0.07f,
+        //        MaxSize = 0.1f,
+        //        WindAffected = true
+        //    };
+        //}
 
         static readonly SimpleParticleProperties dustParticles = new()
         {
@@ -328,7 +328,6 @@ namespace InDappledGroves
         #endregion TreeFelling
 
         //Create function by which interactions will find recipes using the target block and the current tool mode.
-        WorldInteraction[] interactions = null;
         public SkillItem[] toolModes;
     }
 }

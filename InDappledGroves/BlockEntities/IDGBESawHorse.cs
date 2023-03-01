@@ -22,7 +22,7 @@ namespace InDappledGroves.BlockEntities
         public BlockPos ConBlockPos { get; set; }
         public BlockPos pairedBlockPos { get; set; }
 
-        SawHorseRecipe recipe; 
+        SawHorseRecipe recipe;
 
         readonly InventoryGeneric inv;
         public override InventoryBase Inventory => inv;
@@ -45,7 +45,8 @@ namespace InDappledGroves.BlockEntities
             CollectibleObject colObj = slot.Itemstack?.Collectible;
 
 
-            if (Block.Variant["state"] == "compound" && !IsConBlock) {
+            if (Block.Variant["state"] == "compound" && !IsConBlock)
+            {
                 return (Api.World.BlockAccessor.GetBlockEntity(ConBlockPos) as IDGBESawHorse).OnInteract(byPlayer, blockSel);
             }
 
@@ -61,7 +62,8 @@ namespace InDappledGroves.BlockEntities
 
             else if (!slot.Empty && this.Inventory[1].Empty)
             {
-                if (colObj.Attributes != null && DoesSlotMatchRecipe(Api.World, slot)) {
+                if (colObj.Attributes != null && DoesSlotMatchRecipe(slot))
+                {
 
                     if (TryPut(slot))
                     {
@@ -73,22 +75,23 @@ namespace InDappledGroves.BlockEntities
             }
             else if (colObj != null && colObj.HasBehavior<BehaviorWoodPlaning>() && !this.Inventory.Empty)
             {
-                if (slot.Itemstack.Collectible is IDGTool tool) {
-                    recipe = GetMatchingSawHorseRecipe(byPlayer.Entity.World, Inventory[1], tool.GetToolModeName(slot.Itemstack));
+                if (slot.Itemstack.Collectible is IDGTool tool)
+                {
+                    recipe = GetMatchingSawHorseRecipe(Inventory[1], tool.GetToolModeName(slot.Itemstack));
                     if (recipe != null)
                     {
-                        
-                            byPlayer.Entity.StartAnimation("axechop");
-                            return true;
+
+                        byPlayer.Entity.StartAnimation("axechop");
+                        return true;
                     }
                     return false;
                 }
             }
             return true;
         }
-        
 
-        public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
+
+        public bool DoesSlotMatchRecipe(ItemSlot slots)
         {
             List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
             if (recipes == null) return false;
@@ -104,7 +107,7 @@ namespace InDappledGroves.BlockEntities
             return false;
         }
 
-        public SawHorseRecipe GetMatchingSawHorseRecipe(IWorldAccessor world, ItemSlot slots, string curTMode)
+        public SawHorseRecipe GetMatchingSawHorseRecipe(ItemSlot slots, string curTMode)
         {
 
             List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
@@ -121,7 +124,8 @@ namespace InDappledGroves.BlockEntities
             return null;
         }
 
-        private AssetLocation GetSound(ItemSlot slot) {
+        private AssetLocation GetSound(ItemSlot slot)
+        {
             if (slot.Itemstack == null)
             {
                 return null;
@@ -172,7 +176,7 @@ namespace InDappledGroves.BlockEntities
             updateMeshes();
             return false;
         }
-          public void CreateSawhorseStation(BlockPos placedSawHorse, IDGBESawHorse neiSawHorseBE)
+        public void CreateSawhorseStation(BlockPos placedSawHorse)
         {
             IsPaired = true;
             IsConBlock = true;
@@ -188,7 +192,8 @@ namespace InDappledGroves.BlockEntities
             if (ConBlockPos != null)
             {
                 tree.SetBlockPos("conblock", ConBlockPos);
-            } else
+            }
+            else
             {
                 ConBlockPos = null;
             }
@@ -200,7 +205,7 @@ namespace InDappledGroves.BlockEntities
             {
                 pairedBlockPos = null;
             }
-            
+
         }
 
         public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
@@ -211,64 +216,37 @@ namespace InDappledGroves.BlockEntities
             IsConBlock = tree.GetBool("isconblock");
             ConBlockPos = tree.GetBlockPos("conblock", null);
             pairedBlockPos = tree.GetBlockPos("pairedblock", null);
-            
+
             MarkDirty(true);
         }
 
         #region rendering
         public override void updateMeshes()
         {
-                this.updateMesh(1);
+            this.updateMesh(1);
 
             base.updateMeshes();
         }
 
+        #region rendering
         protected ModelTransform genTransform(ItemStack stack)
         {
-
-            IContainedMeshSource containedMeshSource = stack.Collectible as IContainedMeshSource;
-            MeshData meshData;
-            if (containedMeshSource != null)
+            ModelTransform transform;
+            if (stack != null && stack.Collectible.Attributes["workStationTransforms"]["idgSawHorseProps"]["idgSawHorseTransform"].Exists)
             {
-                meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
-                meshData.Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0f, base.Block.Shape.rotateY * 0.017453292f, 0f);
+                transform = stack.Collectible.Attributes["workStationTransforms"]["idgSawHorseProps"]["idgSawHorseTransform"].AsObject<ModelTransform>();
             }
             else
             {
-                this.nowTesselatingObj = stack.Collectible;
-                this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Item.Shape.Base);
-                capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
-            }
-            ModelTransform transform = stack.Collectible.Attributes["workStationTransforms"]["idgSawHorseProps"]["idgSawHorseTransform"].Exists ? stack.Collectible.Attributes["workStationTransforms"]["idgSawHorseProps"]["idgSawHorseTransform"].AsObject<ModelTransform>() : null;
-            if (transform == null)
-            {
                 transform = new ModelTransform
                 {
-                    Translation = new Vec3f(0.5f,0.75f,0f),
-                    Rotation = new Vec3f(0f, 0.25f, 0f),
-                    Origin = new Vec3f(0.5f,0.5f,0.5f),
+                    Translation = new Vec3f(),
+                    Rotation = new Vec3f(),
+                    Origin = new Vec3f()
                 };
             }
-            transform.EnsureDefaultValues();
-            String side = Block.Variant["side"];
-            transform.EnsureDefaultValues();
 
-            if (stack != null) transform = ProcessTransform(transform, side);
-            return transform;
-        }
-
-        private ModelTransform ProcessTransform(ModelTransform transform, String side)
-        {
-            transform.Rotation.X += addRotate(side, "x");
-            transform.Rotation.Y = 45f + (Block.Shape.rotateY) + addRotate(side, "y");
-            transform.Rotation.Z += addRotate(side, "z");
-            transform.Translation.X += addTranslate(side, "x");
-            transform.Translation.Y += 0.75f + addTranslate(side, "y");
-            transform.Translation.Z += addTranslate(side, "z");
-            transform.Origin.X += addOrigin(side, "x");
-            transform.Origin.Y += addOrigin(side, "y");
-            transform.Origin.Z += addOrigin(side, "z");
-            transform.Scale = addScale(side);
+            transform.EnsureDefaultValues();
             return transform;
         }
 
@@ -294,10 +272,9 @@ namespace InDappledGroves.BlockEntities
             JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["workStationTransforms"]["idgSawHorseProps"]["idgSawHorseTransform"];
             return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 1f;
         }
-        readonly Matrixf mat = new();
         #endregion
 
-        public void SpawnOutput(SawHorseRecipe recipe, EntityAgent byEntity, BlockPos pos)
+        public void SpawnOutput(SawHorseRecipe recipe, BlockPos pos)
         {
             int j = recipe.Output.StackSize;
             for (int i = j; i > 0; i--)
@@ -306,7 +283,9 @@ namespace InDappledGroves.BlockEntities
             }
         }
 
-        public SawHorseRecipe GetMatchingPlaningRecipe(IWorldAccessor world, ItemSlot slots)
+        #endregion
+
+        public SawHorseRecipe GetMatchingPlaningRecipe(ItemSlot slots)
         {
             List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
             if (recipes == null) return null;
@@ -336,28 +315,11 @@ namespace InDappledGroves.BlockEntities
             float[][] tfMatrices = new float[1][];
             for (int index = 0; index < 1; index++)
             {
-
-                ItemSlot itemSlot = this.Inventory[index];
-                JsonObject jsonObject;
-                if (itemSlot == null)
-                {
-                    jsonObject = null;
-                }
-                else
-                {
-                    ItemStack itemstack = itemSlot.Itemstack;
-                    if (itemstack == null)
+                    ItemStack itemstack = this.Inventory[index].Itemstack;
+                    if (itemstack != null)
                     {
-                        jsonObject = null;
-                    }
-                    else
-                    {
-                        CollectibleObject collectible = itemstack.Collectible;
-                        jsonObject = ((collectible != null) ? collectible.Attributes : null);
                         tfMatrices[index] = new Matrixf().Set(genTransform(itemstack).AsMatrix).Values;
                     }
-                }
-
             }
             return tfMatrices;
         }

@@ -13,7 +13,6 @@ namespace InDappledGroves.CollectibleBehaviors
 {
     class BehaviorWoodPlaning : CollectibleBehavior, IBehaviorVariant
     {
-        ICoreAPI api;
         private ICoreClientAPI capi;
         public SkillItem[] toolModes;
         public InventoryBase Inventory { get; }
@@ -39,7 +38,6 @@ namespace InDappledGroves.CollectibleBehaviors
 
         public override void OnLoaded(ICoreAPI api)
         {
-            this.api = api;
             this.capi = (api as ICoreClientAPI);
             //interactions = ObjectCacheUtil.GetOrCreate(api, "idgplaneInteractions", () =>
             //{
@@ -78,7 +76,6 @@ namespace InDappledGroves.CollectibleBehaviors
             });
         }
 
-        WorldInteraction[] interactions = null;
     }
 }
 
