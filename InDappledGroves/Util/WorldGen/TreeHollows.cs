@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 
 using Vintagestory.API.Datastructures;
@@ -6,17 +6,9 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using InDappledGroves.Blocks;
 using Vintagestory.API.Common;
-using Vintagestory.API.Client;
-using HarmonyLib;
-using Vintagestory.ServerMods;
-using System.Reflection.Emit;
-using Vintagestory.ServerMods.NoObf;
 using InDappledGroves.Util.Config;
 using System.Linq;
 using InDappledGroves.BlockEntities;
-using Vintagestory.API.Config;
-using Vintagestory.GameContent;
-
 namespace InDappledGroves.Util.WorldGen
 {
 
@@ -177,8 +169,6 @@ namespace InDappledGroves.Util.WorldGen
             }
             return null;
         }
-
-        //Adds the given list of ItemStacks to the first slots in the given hollow.
         public void AddItemStacks(IBlockEntityContainer hollow, ItemStack[] itemStacks)
         {
             var slotNumber = 0;
