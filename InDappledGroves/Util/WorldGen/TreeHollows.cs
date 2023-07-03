@@ -15,6 +15,7 @@ using InDappledGroves.Util.Config;
 using System.Linq;
 using InDappledGroves.BlockEntities;
 using Vintagestory.API.Config;
+using Vintagestory.GameContent;
 
 namespace InDappledGroves.Util.WorldGen
 {
@@ -22,7 +23,6 @@ namespace InDappledGroves.Util.WorldGen
     public class TreeHollows : ModSystem
     {
         private ICoreServerAPI sapi; //The main interface we will use for interacting with Vintage Story
-        private ICoreClientAPI capi;
         private int chunkSize; //Size of chunks. Chunks are cubes so this is the size of the cube.
         private ISet<string> hollowTypes; //Stores tree types that will be used for detecting trees for placing our tree hollows
         private ISet<string> stumpTypes; //Stores tree types that will be used for detecting trees for placing our tree stumps
@@ -37,7 +37,6 @@ namespace InDappledGroves.Util.WorldGen
         public override void Start(ICoreAPI api)
         {
             sapi = api as ICoreServerAPI;
-            capi = api as ICoreClientAPI;
             base.Start(api);
         }
 
@@ -54,22 +53,15 @@ namespace InDappledGroves.Util.WorldGen
 
         public override void StartServerSide(ICoreServerAPI api)
         {
-            //this.sapi = api;
-            //chunkSize = worldBlockAccessor.ChunkSize;
             woods.AddRange(IDGTreeConfig.Current.woodTypes);
             stumps.AddRange(IDGTreeConfig.Current.stumpTypes);
             hollowTypes = new HashSet<string>();
             stumpTypes = new HashSet<string>();
             LoadTreeTypes(hollowTypes);
             LoadStumpTypes(stumpTypes);
-            this.sapi.Event.GetWorldgenBlockAccessor(this.OnWorldGenBlockAccessor);
-            sapi.Event.ServerRunPhase(EnumServerRunPhase.Shutdown, ClearTreeGen);
             TreeDone.OnTreeGenCompleteEvent += NewChunkStumpAndHollowGen;
-        }
 
-        private void OnWorldGenBlockAccessor(IChunkProviderThread chunkProvider)
-        {
-            this.chunkGenBlockAccessor = chunkProvider.GetBlockAccessor(true);
+            sapi.Event.ServerRunPhase(EnumServerRunPhase.Shutdown, ClearTreeGen);
         }
 
         private void ClearTreeGen()
@@ -151,36 +143,18 @@ namespace InDappledGroves.Util.WorldGen
 
         // Places a tree hollow filled with random items at the given world coordinates using the given IBlockAccessor
         private BlockPos PlaceTreeHollow(IBlockAccessor blockAccessor, BlockPos pos)
-        {
-
-            //consider moving it upwards
-            var upCount = sapi.World.Rand.Next(2, 8);
-            var upCandidateBlock = blockAccessor.GetBlock(pos.UpCopy(upCount), BlockLayersAccess.Default);
-
-            if (upCandidateBlock.FirstCodePart() == "log")
-            { pos = pos.UpCopy(upCount); }
-
-            var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
+        {           
+            var upCandidateBlock = blockAccessor.GetBlock(pos.UpCopy(sapi.World.Rand.Next(2, 8)), BlockLayersAccess.Default);
             var woodType = "pine";
-
-            if (treeBlock.FirstCodePart() == "log")
-            {
-                woodType = treeBlock.FirstCodePart(2);
-            }
-
             var hollowType = "up";
-            if (sapi.World.Rand.Next(2) == 1)
-            { hollowType = "up2"; }
-            var belowBlock = blockAccessor.GetBlock(pos.DownCopy(), BlockLayersAccess.Default);
-            if (belowBlock.Fertility > 0) //fertile ground below?
-            {
-                if (sapi.World.Rand.Next(2) == 1)
-                { hollowType = "base"; }
-                else
-                { hollowType = "base2"; }
-            }
+            hollowType = sapi.World.Rand.Next(2) == 1 ? "up" : "up2";
 
-            var withPath = "indappledgroves:treehollowgrown-" + hollowType + "-" + woodType + "-" + dirs[sapi.World.Rand.Next(4)];
+            woodType = upCandidateBlock.FirstCodePart() == "log" ? upCandidateBlock.FirstCodePart(2) : "pine";
+
+            var underblockfert = blockAccessor.GetBlock(pos.DownCopy(), BlockLayersAccess.Default).Fertility;
+            hollowType = (underblockfert > 0 && sapi.World.Rand.Next(2) == 1) ? "base" : "base2";
+
+            var withPath = "indappledgroves:treehollowgrown-" + hollowType + "-" + woodType + "-" + BlockFacing.HORIZONTALS_ANGLEORDER[sapi.World.Rand.Next(4)].ToString();
             var withBlockID = sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);
             if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null))
@@ -202,12 +176,6 @@ namespace InDappledGroves.Util.WorldGen
                 return pos;
             }
             return null;
-        }
-
-        private bool ShouldPlaceHollow()
-        {
-            var randomNumber = sapi.World.Rand.Next(0, 100);
-            return randomNumber > 0 && randomNumber <= IDGTreeConfig.Current.TreeHollowsSpawnProbability * 100;
         }
 
         //Adds the given list of ItemStacks to the first slots in the given hollow.
