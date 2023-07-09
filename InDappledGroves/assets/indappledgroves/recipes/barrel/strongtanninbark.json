@@ -3,7 +3,7 @@
 		"code": "strongtannin",
 		"sealHours": 24,
 		"ingredients": [
-			{ "type": "block", "code": "indappledgroves:barkbundle-oak-dry",  "quantity": 1 },
+			{ "type": "item", "code": "indappledgroves:bark-oak-dry",  "quantity": 1 },
 			{ "type": "item", "code": "game:weaktanninportion",  "litres": 20 },
 		],
 		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 20 }
@@ -12,7 +12,7 @@
 		"code": "strongtannin",
 		"sealHours": 24,
 		"ingredients": [
-			{ "type": "block", "code": "indappledgroves:barkbundle-acacia-dry",  "quantity": 1 },
+			{ "type": "item", "code": "indappledgroves:bark-acacia-dry",  "quantity": 1 },
 			{ "type": "item", "code": "game:weaktanninportion",  "litres": 20 }
 		],
 		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 20 }
@@ -22,53 +22,35 @@
 		"sealHours": 24,
 		"ingredients": [
 			{ "type": "block", "code": "indappledgroves:barkbundle-oak-dry",  "quantity": 1 },
-			{ "type": "item", "code": "game:weaktanninportion",  "litres": 25 }
+			{ "type": "item", "code": "game:weaktanninportion",  "litres": 50 }
 		],
-		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 25 }
+		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 50 }
 	},
 	{
 		"code": "strongtannin",
 		"sealHours": 24,
 		"ingredients": [
 			{ "type": "block", "code": "indappledgroves:barkbundle-acacia-dry",  "quantity": 1 },
-			{ "type": "item", "code": "game:weaktanninportion",  "litres": 25 }
+			{ "type": "item", "code": "game:weaktanninportion",  "litres": 50 }
 		],
-		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 25 }
+		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 50 }
 	},
 	{
 		"code": "strongtannin",
 		"sealHours": 48,
 		"ingredients": [
-			{ "type": "block", "code": "indappledgroves:barkbundle-oak-dry",  "quantity": 1 },
-			{ "type": "item", "code": "game:waterportion",  "litres": 20 }
+			{ "type": "block", "code": "indappledgroves:barkbundle-oak-dry",  "quantity": 2 },
+			{ "type": "item", "code": "game:waterportion",  "litres": 50 }
 		],
-		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 20 }
+		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 50 }
 	},
 	{
 		"code": "strongtannin",
 		"sealHours": 48,
 		"ingredients": [
-			{ "type": "block", "code": "indappledgroves:barkbundle-acacia-dry",  "quantity": 1 },
-			{ "type": "item", "code": "game:waterportion",  "litres": 20 }
+			{ "type": "block", "code": "indappledgroves:barkbundle-acacia-dry",  "quantity": 2 },
+			{ "type": "item", "code": "game:waterportion",  "litres": 50 }
 		],
-		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 20 }
-	},
-	{
-		"code": "strongtannin",
-		"sealHours": 48,
-		"ingredients": [
-			{ "type": "block", "code": "indappledgroves:barkbundle-oak-dry",  "quantity": 1 },
-			{ "type": "item", "code": "game:waterportion",  "litres": 25 }
-		],
-		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 25 }
-	},
-	{
-		"code": "strongtannin",
-		"sealHours": 48,
-		"ingredients": [
-			{ "type": "block", "code": "indappledgroves:barkbundle-acacia-dry",  "quantity": 1 },
-			{ "type": "item", "code": "game:waterportion",  "litres": 25 }
-		],
-		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 25 }
+		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 50 }
 	}
 ]

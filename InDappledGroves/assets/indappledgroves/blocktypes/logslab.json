@@ -1,8 +1,18 @@
 {
 	"code": "logslab",
 	"class": "idglogslab",
-	"behaviors": [
-		{	"name": "OmniRotatable",	"properties": {	"rotateSides": true, "facing": "block"	}	}
+	behaviors: [
+		{
+			name: "OmniRotatable",
+			properties: {
+				"rotateSides": true,
+				"facing": "block"
+			}
+		},
+		{ 
+			name: "WrenchOrientable", properties: { baseCode: "logslab-{barked}-{wood}-*-{cover}" } 
+
+		}
 	],
 	"variantgroups": [
 		{ "code": "wood", "states": ["aged"], "loadFromProperties": "game:block/wood" },

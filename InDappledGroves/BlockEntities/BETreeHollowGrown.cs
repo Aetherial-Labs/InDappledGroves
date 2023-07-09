@@ -24,7 +24,11 @@
             this.Inventory = new InventoryGeneric(Slots, null, null);
         }
 
-        
+        public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tessThreadTesselator)
+        {
+            return false;
+            return base.OnTesselation(mesher, tessThreadTesselator);
+        }
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);

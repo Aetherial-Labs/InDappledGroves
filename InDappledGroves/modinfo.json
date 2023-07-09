@@ -3,9 +3,9 @@
   "modid": "indappledgroves",
   "name": "In Dappled Groves",
   "authors": ["Vinter Nacht"],
-  "contributors": ["Taska Raine", "SpearAndFang", "DJVirus"],
+  "contributors": ["Taska Raine", "SpearAndFang", "DJVirus", "Teacup Angel", "Apache"],
   "description": "'All I need is my cross cut saw, My double bit axe and eighty trees to fall.' - Crosscut Saw - Van Wagner",
-  "version": "0.4.9-rc.9",
+  "version": "0.4.10-dev.2",
   "dependencies": {
   }
 }

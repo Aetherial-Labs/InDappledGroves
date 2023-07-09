@@ -1,0 +1,15 @@
+[
+		{
+			"enabled": "false",
+			ingredientPattern: "AS_	PSP",
+			ingredients: {
+				"A": { type: "item", code: "indappledgroves:adze-*", isTool: true  },
+				"P": { type: "block", code: "game:log-placed-*-ud", name: "wood", allowedVariants: ["douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa",
+									"mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"] },
+				"S": { type: "item", code: "game:stick" }
+			},
+			width: 3,
+			height: 2,
+			output: { type: "block", code: "game:roughhewnfence-{wood}-ew-free", quantity: 8  }
+		}
+]

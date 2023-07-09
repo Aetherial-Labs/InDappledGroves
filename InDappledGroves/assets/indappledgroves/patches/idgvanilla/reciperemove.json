@@ -1,12 +1,5 @@
 [
   {
-    "file": "game:recipes/clayforming/axemold.json",
-    "op": "add",
-    "path": "/enabled",
-    "value": "false",
-    "side": "server"
-  },
-  {
     "file": "game:recipes/grid/debarkedlog.json",
     "op": "remove",
     "path": "/0",
@@ -19,16 +12,10 @@
     "side": "server"
   },
   {
-    "file": "game:blocktypes/clay/mold/toolmold.json",
-    "op": "remove",
-    "path": "/variantgroups/1/states/0",
-    "side": "server"
-  },
-  {
     "file": "game:recipes/grid/tool/axe.json",
-    "op": "add",
-    "path": "/0/enabled",
-    "value": false,
+    "op": "replace",
+    "path": "/0/ingredients/T/allowedVariants",
+    "value": ["copper"],
     "side": "server"
   },
   {

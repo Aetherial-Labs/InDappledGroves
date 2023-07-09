@@ -1,0 +1,14 @@
+[
+    {
+    ingredientPattern: "APS    PSP    SPS",
+    ingredients: {
+        "A": { type: "item", code: "indappledgroves:adze-*", isTool: true  },
+        "P": { type: "block", code: "game:log-placed--ud", name: "wood", allowedVariants: ["birch", "oak", "maple", "pine", "acacia", "kapok", "aged", "baldcypress", "larch", "redwood", "walnut"] },
+        "S": { type: "item", code: "game:stick" }
+    },
+    width: 3,
+    height: 3,
+    output: { type: "block", code: "game:roughhewnfencegate-{wood}-n-closed-free", quantity: 2  }
+
+    }
+]

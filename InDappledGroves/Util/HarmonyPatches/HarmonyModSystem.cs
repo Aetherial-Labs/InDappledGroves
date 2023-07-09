@@ -70,14 +70,6 @@ namespace InDappledGroves.Util.HarmonyPatches
             }
         }
 
-        //public static void OnLoadedPostfix(BlockLog __instance, ICoreAPI api)
-        //{
-        //    if(/*IDGTreeConfig.Current.RunTreeGenOnChunkReload == */true)
-        //    {
-        //        __instance.
-        //    }
-        //}
-
         public override void Dispose()
         {
             harmony?.UnpatchAll();

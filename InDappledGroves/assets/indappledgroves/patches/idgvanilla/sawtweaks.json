@@ -25,49 +25,49 @@
     "path": "/miningspeedbytype",
     "value": {	
 		"*-copper": {
-			"wood": 2.6,
-			"plant": 2.8,
-			"leaves": 2.4
+			"wood": 1,
+			"plant": 1,
+			"leaves": 1
 		},
 		"*-silver": {
-			"wood": 2.25,
-			"plant": 3.3,
-			"leaves": 3
+			"wood": 0.75,
+			"plant": 0.75,
+			"leaves": 0.75
 		},
 		"*-gold": {
-			"wood": 2.25,
-			"plant": 3.3,
-			"leaves": 3
+			"wood": 0.75,
+			"plant": 0.75,
+			"leaves": 0.75
 		},
 		"*-bismuthbronze": {
-			"wood": 2.9,
-			"plant": 3.5,
-			"leaves": 2.6
+			"wood": 1.25,
+			"plant": 1.25,
+			"leaves": 1.25
 		},
 		"*-tinbronze": {
-			"wood": 3.15,
-			"plant": 3.8,
-			"leaves": 3
+			"wood": 1.5,
+			"plant": 1.5,
+			"leaves": 1.5
 		},
 		"*-blackbronze": {
-			"wood": 3.3,
-			"plant": 4,
-			"leaves": 3.1
+			"wood": 1.75,
+			"plant": 1.75,
+			"leaves": 1.75
 		},
 		"*-iron": {
-			"wood": 4.2,
-			"plant": 5,
-			"leaves": 3.2
+			"wood": 2,
+			"plant": 2,
+			"leaves": 2
 		},
 		"*-meteoriciron": {
-			"wood": 4.8,
-			"plant": 5.5,
-			"leaves": 3.6
+			"wood": 2.25,
+			"plant": 2.25,
+			"leaves": 2.25
 		},
 		"*-steel": {
-			"wood": 6,
-			"plant": 6,
-			"leaves": 4
+			"wood": 3,
+			"plant": 3,
+			"leaves": 3
 		}
 	},
 		"file": "game:itemtypes/tool/saw.json",

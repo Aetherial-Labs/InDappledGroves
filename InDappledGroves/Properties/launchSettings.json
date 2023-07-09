@@ -3,7 +3,7 @@
     "InDappledGroves": {
       "commandName": "Project",
       "workingDirectory": "C:\\Users\\vinte\\AppData\\Roaming\\VintagestoryNet7\\1.18\\",
-      "nativeDebugging": false
+      "nativeDebugging": true
     }
   }
 }

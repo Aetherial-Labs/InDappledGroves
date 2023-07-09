@@ -18,8 +18,6 @@ namespace InDappledGroves.Util.WorldGen
         private int chunkSize; //Size of chunks. Chunks are cubes so this is the size of the cube.
         private ISet<string> hollowTypes; //Stores tree types that will be used for detecting trees for placing our tree hollows
         private ISet<string> stumpTypes; //Stores tree types that will be used for detecting trees for placing our tree stumps
-        private IBlockAccessor chunkGenBlockAccessor; //Used for accessing blocks during chunk generation
-        private IBlockAccessor worldBlockAccessor; //Used for accessing blocks after chunk generation
         private TreeLootObject[] treelootbase;
         private string[] dirs = { "north", "south", "east", "west" };
         private List<string> woods = new();
@@ -51,10 +49,8 @@ namespace InDappledGroves.Util.WorldGen
             stumpTypes = new HashSet<string>();
             LoadTreeTypes(hollowTypes);
             LoadStumpTypes(stumpTypes);
-            TreeDone.OnTreeGenCompleteEvent += NewChunkStumpAndHollowGen;
-
             sapi.Event.ServerRunPhase(EnumServerRunPhase.Shutdown, ClearTreeGen);
-        }
+            TreeDone.OnTreeGenCompleteEvent += NewChunkStumpAndHollowGen;
 
         private void ClearTreeGen()
         {
@@ -94,9 +90,8 @@ namespace InDappledGroves.Util.WorldGen
                         PlaceTreeStump(ba, entry.Key);
                     }
                 }
-                //if (ShouldPlaceHollow()){
-                PlaceTreeHollow(ba, treeBaseDict.Last().Key);
-                //}
+                float randNumb = (float)sapi.World.Rand.NextDouble();
+                if (randNumb <= 0.02) PlaceTreeHollow(ba, treeBaseDict.Last().Key);
             }
         }
 
@@ -114,7 +109,6 @@ namespace InDappledGroves.Util.WorldGen
         // Places a tree stump at the given world coordinates using the given IBlockAccessor
         private bool PlaceTreeStump(IBlockAccessor blockAccessor, BlockPos pos)
         {
-
             var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
             //Debug.WriteLine("Will replace:" + treeBlock.Code.Path);
             var stumpType = "pine";
@@ -169,6 +163,8 @@ namespace InDappledGroves.Util.WorldGen
             }
             return null;
         }
+
+        //Adds the given list of ItemStacks to the first slots in the given hollow.
         public void AddItemStacks(IBlockEntityContainer hollow, ItemStack[] itemStacks)
         {
             var slotNumber = 0;
