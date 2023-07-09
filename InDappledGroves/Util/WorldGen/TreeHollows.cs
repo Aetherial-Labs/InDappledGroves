@@ -52,6 +52,8 @@ namespace InDappledGroves.Util.WorldGen
             sapi.Event.ServerRunPhase(EnumServerRunPhase.Shutdown, ClearTreeGen);
             TreeDone.OnTreeGenCompleteEvent += NewChunkStumpAndHollowGen;
 
+        }
+
         private void ClearTreeGen()
         {
             TreeDone.OnTreeGenCompleteEvent -= NewChunkStumpAndHollowGen;
