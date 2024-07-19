@@ -32,28 +32,6 @@
             <param name="worldgenRandom"></param>
             <returns></returns>
         </member>
-        <member name="M:InDappledGroves.Blocks.IDGChoppingBlock.CheckForRecipeAndSetResistance(Vintagestory.API.Common.IPlayer,Vintagestory.API.Common.IWorldAccessor,InDappledGroves.BlockEntities.IDGBEChoppingBlock,System.String)">
-            <summary>
-            Attempts to find a matching recipe and if found,
-            if found set the resistance of Inventory[0].
-            Returns bool value indicating success or failure.
-            </summary>
-            <param name="byPlayer"></param>
-            <param name="world"></param>
-            <param name="bechoppingblock"></param>
-            <param name="curTMode"></param>
-            <returns>boolean</returns>
-        </member>
-        <member name="M:InDappledGroves.Blocks.IDGChoppingBlock.SetToolValues(Vintagestory.API.Common.CollectibleObject,System.String,Vintagestory.API.Common.ItemSlot)">
-            <summary>
-            Determine if received collObj has BehaviorIDGTool,
-            if so, set curTMode to current tool mode of collObj,
-            set Tool Mode Modifier to appropriate value.
-            </summary>
-            <param name="collObj"></param>
-            <param name="curTMode"></param>
-            <param name="slot"></param>
-        </member>
         <member name="M:InDappledGroves.Blocks.IDGSawHorse.IsNotDiagonal(Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockPos)">
             <summary>Determines whether [is not diagonal] [the specified position].</summary>
             <param name="pos">The position of the placed sawhorse block</param>
